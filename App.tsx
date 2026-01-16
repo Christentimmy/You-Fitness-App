@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'react-native';
 import SelectAgeScreen from './src/screens/SelectAgeScreen';
 import GenderSelectionScreen from './src/screens/GenderSelectionScreen';
+import SelectHeightScreen from './src/screens/SelectHeightScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,6 +42,14 @@ export default function App() {
           <Stack.Screen 
             name="SelectAge" 
             component={SelectAgeScreen}
+            options={{
+              gestureEnabled: true,
+              animation: 'slide_from_right', // Add smooth transition
+            }}
+          />
+          <Stack.Screen 
+            name="SelectHeight" 
+            component={SelectHeightScreen}
             options={{
               gestureEnabled: true,
               animation: 'slide_from_right', // Add smooth transition

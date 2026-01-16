@@ -1,4 +1,3 @@
-
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import {Text, View, StyleSheet } from 'react-native';
 import { ArrowLeft } from 'lucide-react-native';
@@ -20,7 +19,9 @@ const SelectAgeScreen = () => {
   const navigation = useNavigation<any>();
 
 
-  const handleNext = () => {};
+  const handleNext = () => {
+    navigation.navigate('SelectHeight');
+  };
 
     return (
         <SafeAreaProvider style={styles.container}>
