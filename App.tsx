@@ -1,20 +1,53 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer, DarkTheme as NavigationDarkTheme } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack'; 
+import { StatusBar } from 'react-native';
+import SelectAgeScreen from './src/screens/SelectAgeScreen';
+import GenderSelectionScreen from './src/screens/GenderSelectionScreen';
+
+const Stack = createNativeStackNavigator();
+
+const MyTheme = {
+  ...NavigationDarkTheme,
+  colors: {
+    ...NavigationDarkTheme.colors,
+    background: '#0E1016',
+    card: '#0E1016',
+    text: '#FFFFFF',
+    primary: '#05E5FF',
+    border: 'transparent',
+  },
+};
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <StatusBar 
+        barStyle="light-content" 
+        backgroundColor="#0E1016" 
+        translucent={false}
+      />
+      <NavigationContainer 
+        theme={MyTheme}
+        fallback={null} // Prevents white flash during initial render
+      >
+        <Stack.Navigator 
+          screenOptions={{ 
+            headerShown: false,
+            contentStyle: { backgroundColor: '#0E1016' }, // Set screen background
+          }}
+          initialRouteName="GenderSelection"
+        >
+          <Stack.Screen name="GenderSelection" component={GenderSelectionScreen} />
+          <Stack.Screen 
+            name="SelectAge" 
+            component={SelectAgeScreen}
+            options={{
+              gestureEnabled: true,
+              animation: 'slide_from_right', // Add smooth transition
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
