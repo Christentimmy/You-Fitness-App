@@ -4,15 +4,15 @@ import { ArrowLeft } from 'lucide-react-native';
 import { TouchableOpacity, Dimensions } from "react-native";
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold, Poppins_700Bold } from '@expo-google-fonts/poppins';
 import { useState } from 'react';
-import HeightPickerWheel from "../components/HeightPicker";
+import WeightSlider from "../components/WeightSlider";
 const { width, height } = Dimensions.get('window');
 import { useNavigation } from '@react-navigation/native';
 
-type HeightUnit = 'feet' | 'inches' | 'centimeters';
+type WeightUnit = 'kg' | 'lbs';
 
-const SelectHeightScreen = () => {
-  const [selectedUnit, setSelectedUnit] = useState<HeightUnit>('centimeters');
-  const [selectedHeight, setSelectedHeight] = useState(167);
+const SelectWeightScreen = () => {
+  const [selectedUnit, setSelectedUnit] = useState<WeightUnit>('kg');
+  const [selectedWeight, setSelectedWeight] = useState(54);
 
   useFonts({
     'Poppins_400Regular': Poppins_400Regular,
@@ -23,28 +23,8 @@ const SelectHeightScreen = () => {
   const navigation = useNavigation<any>();
 
   const handleNext = () => {
-    // Handle navigation to next screen
-    console.log('Selected height:', selectedHeight, selectedUnit);
-    navigation.navigate('SelectWeight');
+    console.log('Selected weight:', selectedWeight, selectedUnit);
   };
-
-  const renderUnitButton = (unit: HeightUnit, label: string) => (
-    <TouchableOpacity
-      style={[
-        styles.unitButton,
-        selectedUnit === unit && styles.unitButtonActive
-      ]}
-      onPress={() => setSelectedUnit(unit)}
-      activeOpacity={0.8}
-    >
-      <Text style={[
-        styles.unitButtonText,
-        selectedUnit === unit && styles.unitButtonTextActive
-      ]}>
-        {label}
-      </Text>
-    </TouchableOpacity>
-  );
 
   return (
     <SafeAreaProvider style={styles.container}>
@@ -54,7 +34,7 @@ const SelectHeightScreen = () => {
             <ArrowLeft style={styles.backIcon} />
           </TouchableOpacity>
           <Text style={styles.stepText}> 
-            03 <Text style={styles.stepLabel}>ABOUT YOUR BODY</Text>
+            04 <Text style={styles.stepLabel}>ABOUT YOUR BODY</Text>
           </Text>
         </View>
         
@@ -63,32 +43,64 @@ const SelectHeightScreen = () => {
           <View style={styles.progressActive} />
           <View style={styles.progressActive} />
           <View style={styles.progressActive} />
-          <View style={styles.progressInactive} />
+          <View style={styles.progressActive} />
           <View style={styles.progressInactive} />
         </View>
         
         {/* Title Section */}
         <View>
-          <Text style={styles.title}>What's your height?</Text>
+          <Text style={styles.title}>What's your weight?</Text>
         </View>
 
         {/* Unit Selector */}
         <View style={styles.unitSelectorContainer}>
           <View style={styles.unitSelector}>
-            {renderUnitButton('feet', 'Feet')}
-            {renderUnitButton('inches', 'Inches')}
-            {renderUnitButton('centimeters', 'Centimeters')}
+            <TouchableOpacity
+              style={[
+                styles.unitButton,
+                selectedUnit === 'kg' && styles.unitButtonActive
+              ]}
+              onPress={() => setSelectedUnit('kg')}
+              activeOpacity={0.8}
+            >
+              <Text style={[
+                styles.unitButtonText,
+                selectedUnit === 'kg' && styles.unitButtonTextActive
+              ]}>
+                Kilogram(Kg)
+              </Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity
+              style={[
+                styles.unitButton,
+                selectedUnit === 'lbs' && styles.unitButtonActive
+              ]}
+              onPress={() => setSelectedUnit('lbs')}
+              activeOpacity={0.8}
+            >
+              <Text style={[
+                styles.unitButtonText,
+                selectedUnit === 'lbs' && styles.unitButtonTextActive
+              ]}>
+                Pound(lbs)
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
 
-        {/* Height Picker Wheel */}
-        <View style={styles.pickerContainer}>
-          <View style={styles.pickerWrapper}>
-            <HeightPickerWheel 
-              unit={selectedUnit}
-              onValueChange={setSelectedHeight}
-            />
-          </View>
+        {/* Weight Display and Slider */}
+        <View style={styles.sliderContainer}>
+          <Text style={styles.weightDisplay}>
+            {selectedWeight}
+            <Text style={styles.weightUnit}>{selectedUnit}</Text>
+          </Text>
+          
+          <WeightSlider 
+            unit={selectedUnit}
+            value={selectedWeight}
+            onValueChange={setSelectedWeight}
+          />
         </View>
 
         {/* Next Button */}
@@ -165,8 +177,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins_700Bold',
   },
   unitSelectorContainer: {
-    paddingHorizontal: 40,
-    marginBottom: 20,
+    paddingHorizontal: 50,
+    marginBottom: 40,
   },
   unitSelector: {
     flexDirection: 'row',
@@ -174,11 +186,11 @@ const styles = StyleSheet.create({
     borderRadius: 35,
     padding: 4,
     borderWidth: 2,
-    borderColor: '#05E5FF',
+    borderColor: '#1A1D25',
   },
   unitButton: {
     flex: 1,
-    paddingVertical: 5,
+    paddingVertical: 14,
     borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
@@ -187,7 +199,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#05E5FF',
   },
   unitButtonText: {
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: '600',
     color: '#6B6E76',
     fontFamily: 'Poppins_600SemiBold',
@@ -196,14 +208,24 @@ const styles = StyleSheet.create({
     color: '#0E1016',
     fontFamily: 'Poppins_700Bold',
   },
-  pickerContainer: {
+  sliderContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 20,
   },
-  pickerWrapper: {
-    width: '100%',
-    height: 400,
+  weightDisplay: {
+    fontSize: 96,
+    fontWeight: '700',
+    color: '#FFFFFF',
+    fontFamily: 'Poppins_700Bold',
+    marginBottom: 60,
+  },
+  weightUnit: {
+    fontSize: 36,
+    fontWeight: '400',
+    color: '#FFFFFF',
+    fontFamily: 'Poppins_400Regular',
   },
   nextButton: {
     backgroundColor: '#05E5FF',
@@ -221,4 +243,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SelectHeightScreen;
+export default SelectWeightScreen;
