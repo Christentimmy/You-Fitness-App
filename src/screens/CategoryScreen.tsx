@@ -1,6 +1,6 @@
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { ArrowLeft, Search, ChevronRight } from 'lucide-react-native';
+import { ArrowLeft, Search, ChevronRight, Heart  } from 'lucide-react-native';
 import { useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_600SemiBold, Poppins_700Bold } from '@expo-google-fonts/poppins';
 import { useNavigation } from '@react-navigation/native';
 
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#0E1016',
+    paddingTop: 15,
   },
   header: {
     flexDirection: 'row',
