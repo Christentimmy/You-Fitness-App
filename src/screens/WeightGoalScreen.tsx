@@ -1,3 +1,4 @@
+
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Text, View, StyleSheet } from 'react-native';
 import { ArrowLeft } from 'lucide-react-native';
@@ -24,7 +25,6 @@ const SelectWeightScreen = () => {
 
   const handleNext = () => {
     console.log('Selected weight:', selectedWeight, selectedUnit);
-    navigation.navigate("WeightGoal");
   };
 
   return (
@@ -35,7 +35,7 @@ const SelectWeightScreen = () => {
             <ArrowLeft style={styles.backIcon} />
           </TouchableOpacity>
           <Text style={styles.stepText}> 
-            04 <Text style={styles.stepLabel}>ABOUT YOUR BODY</Text>
+            05 <Text style={styles.stepLabel}>ABOUT YOUR BODY</Text>
           </Text>
         </View>
         
@@ -50,7 +50,7 @@ const SelectWeightScreen = () => {
         
         {/* Title Section */}
         <View>
-          <Text style={styles.title}>What's your weight?</Text>
+          <Text style={styles.title}>What’s your weight goal?</Text>
         </View>
 
         {/* Unit Selector */}

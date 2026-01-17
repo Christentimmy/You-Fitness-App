@@ -5,6 +5,7 @@ import SelectAgeScreen from './src/screens/SelectAgeScreen';
 import GenderSelectionScreen from './src/screens/GenderSelectionScreen';
 import SelectHeightScreen from './src/screens/SelectHeightScreen';
 import SelectWeightScreen from './src/screens/SelectWeightScreen';
+import WeightGoalScreen from './src/screens/WeightGoalScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -59,6 +60,14 @@ export default function App() {
           <Stack.Screen 
             name="SelectWeight" 
             component={SelectWeightScreen}
+            options={{
+              gestureEnabled: true,
+              animation: 'slide_from_right', // Add smooth transition
+            }}
+          />
+          <Stack.Screen 
+            name="WeightGoal" 
+            component={WeightGoalScreen}
             options={{
               gestureEnabled: true,
               animation: 'slide_from_right', // Add smooth transition
