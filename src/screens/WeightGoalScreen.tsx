@@ -24,7 +24,7 @@ const SelectWeightScreen = () => {
   const navigation = useNavigation<any>();
 
   const handleNext = () => {
-    console.log('Selected weight:', selectedWeight, selectedUnit);
+    navigation.navigate("Home");
   };
 
   return (
@@ -45,7 +45,7 @@ const SelectWeightScreen = () => {
           <View style={styles.progressActive} />
           <View style={styles.progressActive} />
           <View style={styles.progressActive} />
-          <View style={styles.progressInactive} />
+          <View style={styles.progressActive} />
         </View>
         
         {/* Title Section */}
@@ -160,12 +160,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 4,
     backgroundColor: '#05E5FF',
-    borderRadius: 2,
-  },
-  progressInactive: {
-    flex: 1,
-    height: 4,
-    backgroundColor: '#2A2D35',
     borderRadius: 2,
   },
   title: {
