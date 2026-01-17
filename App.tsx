@@ -7,6 +7,7 @@ import SelectHeightScreen from './src/screens/SelectHeightScreen';
 import SelectWeightScreen from './src/screens/SelectWeightScreen';
 import WeightGoalScreen from './src/screens/WeightGoalScreen';
 import HomeScreen from './src/screens/HomeScreen';
+import WorkoutPlanScreen from './src/screens/WorkoutPlanScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -77,6 +78,14 @@ export default function App() {
           <Stack.Screen 
             name="Home" 
             component={HomeScreen}
+            options={{
+              gestureEnabled: true,
+              animation: 'slide_from_right', // Add smooth transition
+            }}
+          />
+          <Stack.Screen 
+            name="WorkoutPlan" 
+            component={WorkoutPlanScreen}
             options={{
               gestureEnabled: true,
               animation: 'slide_from_right', // Add smooth transition

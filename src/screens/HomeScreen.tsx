@@ -45,6 +45,10 @@ const HomeScreen = () => {
     { id: 6, title: 'Front and Back Lunge', duration: '0:30', visible: false },
   ];
 
+  const handleStartWorkout = () => {
+    navigation.navigate("WorkoutPlan");
+  }
+
   return (
     <SafeAreaProvider style={styles.container}>
       <ScrollView 
@@ -84,7 +88,7 @@ const HomeScreen = () => {
           <View style={styles.featuredOverlay}>
             <Text style={styles.featuredTitle}>Full Body Toning{'\n'}Workout</Text>
             <Text style={styles.featuredSubtitle}>Today's Workout</Text>
-            <TouchableOpacity style={styles.startButton}>
+            <TouchableOpacity style={styles.startButton} onPress={handleStartWorkout}>
               <Text style={styles.startButtonText}>Start Workout</Text>
             </TouchableOpacity>
           </View>
