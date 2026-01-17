@@ -87,6 +87,7 @@ const WorkoutDayDetailScreen = () => {
               key={exercise.id} 
               style={styles.exerciseCard}
               activeOpacity={0.7}
+              onPress={()=> navigation.navigate("WorkoutPlayer")}
             >
               <Image 
                 source={{ uri: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=100&h=100&fit=crop' }}
