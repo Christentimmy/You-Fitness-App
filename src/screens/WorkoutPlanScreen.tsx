@@ -1,8 +1,9 @@
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import { Text, View, StyleSheet, Image, ScrollView, TouchableOpacity, Dimensions , TouchableWithoutFeedback} from 'react-native';
 import { ArrowLeft, ChevronRight } from 'lucide-react-native';
 import { useFonts, Poppins_400Regular, Poppins_500Medium, Poppins_600SemiBold, Poppins_700Bold } from '@expo-google-fonts/poppins';
 import { useNavigation } from '@react-navigation/native';
+
 
 const { width } = Dimensions.get('window');
 
@@ -48,10 +49,11 @@ const WorkoutPlanScreen = () => {
             {isFirst && <Text style={styles.weekProgress}>1/7</Text>}
           </View>
 
-          <View style={[
-            styles.weekCard,
-            isFirst && styles.weekCardActive
-          ]}>
+          <TouchableWithoutFeedback onPress={()=> navigation.navigate("WorkoutDayDetail")}>
+            <View style={[
+                styles.weekCard,
+                isFirst && styles.weekCardActive
+            ]}>
             {/* Day circles - Row 1 */}
             <View style={styles.daysRow}>
               <View style={[styles.dayCircle, styles.dayCircleActive]}>
@@ -88,6 +90,7 @@ const WorkoutPlanScreen = () => {
               <Text style={styles.trophyIcon}>🏆</Text>
             </View>
           </View>
+          </TouchableWithoutFeedback>
         </View>
       </View>
     );
