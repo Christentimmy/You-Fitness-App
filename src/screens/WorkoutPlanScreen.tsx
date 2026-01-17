@@ -109,11 +109,6 @@ const WorkoutPlanScreen = () => {
             style={styles.heroImage}
           />
           <View style={styles.heroOverlay} />
-          
-          {/* Status Bar Area */}
-          <View style={styles.statusBar}>
-            <Text style={styles.statusTime}>9:41</Text>
-          </View>
 
           {/* Back Button */}
           <TouchableOpacity 

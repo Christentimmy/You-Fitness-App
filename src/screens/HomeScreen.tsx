@@ -37,12 +37,8 @@ const HomeScreen = () => {
   ];
 
   const exercises = [
-    { id: 1, title: 'Front and Back Lunge', duration: '0:30', visible: true },
-    { id: 2, title: 'Front and Back Lunge', duration: '0:30', visible: true },
-    { id: 3, title: 'Front and Back Lunge', duration: '0:30', visible: false },
-    { id: 4, title: 'Front and Back Lunge', duration: '0:30', visible: false },
-    { id: 5, title: 'Front and Back Lunge', duration: '0:30', visible: false },
-    { id: 6, title: 'Front and Back Lunge', duration: '0:30', visible: false },
+    { id: 1, title: 'Front and Back Lunge', duration: '0:30' },
+    { id: 2, title: 'Front and Back Lunge', duration: '0:30' },
   ];
 
   const handleStartWorkout = () => {
@@ -106,16 +102,18 @@ const HomeScreen = () => {
         >
           {progressCards.map((card, index) => (
             <View key={index} style={styles.progressCard}>
-              <View style={styles.progressCardHeader}>
-                <View style={styles.progressCircle}>
-                  <Text style={styles.progressText}>{card.progress}</Text>
-                </View>
-                <TouchableOpacity>
-                  <MoreVertical size={20} color="#FFFFFF" />
+                <TouchableOpacity onPress={()=> navigation.navigate("WorkoutPlan")}>
+                    <View style={styles.progressCardHeader}>
+                        <View style={styles.progressCircle}>
+                            <Text style={styles.progressText}>{card.progress}</Text>
+                        </View>
+                        <TouchableOpacity>
+                            <MoreVertical size={20} color="#FFFFFF" />
+                        </TouchableOpacity>
+                    </View>
+                    <Text style={styles.progressCardTitle}>{card.title}</Text>
+                    <Text style={styles.progressCardSubtitle}>{card.remaining}</Text>
                 </TouchableOpacity>
-              </View>
-              <Text style={styles.progressCardTitle}>{card.title}</Text>
-              <Text style={styles.progressCardSubtitle}>{card.remaining}</Text>
             </View>
           ))}
         </ScrollView>
@@ -143,7 +141,7 @@ const HomeScreen = () => {
             <Text style={styles.sectionTitle}>Popular Workouts for{'\n'}you</Text>
             <Text style={styles.workoutsCount}>Workouts: 80</Text>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=> navigation.navigate("AllExercises")}>
             <Text style={styles.viewAllText}>View All</Text>
           </TouchableOpacity>
         </View>
@@ -154,7 +152,7 @@ const HomeScreen = () => {
           contentContainerStyle={styles.workoutsScroll}
         >
           {workouts.map((workout) => (
-            <TouchableOpacity key={workout.id} style={styles.workoutCard}>
+            <TouchableOpacity key={workout.id} style={styles.workoutCard} onPress={()=> navigation.navigate("WorkoutPlan")}>
               <Image 
                 source={require('../../assets/mask.png')}
                 style={styles.workoutImage}
@@ -178,7 +176,7 @@ const HomeScreen = () => {
             <Text style={styles.sectionTitle}>Exercises</Text>
             <Text style={styles.exercisesCount}>Exercises: 210</Text>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=> navigation.navigate("AllExercises")}>
             <Text style={styles.viewAllText}>View All</Text>
           </TouchableOpacity>
         </View>
@@ -188,33 +186,29 @@ const HomeScreen = () => {
             <TouchableOpacity 
               key={exercise.id} 
               style={[
-                styles.exerciseCard,
-                !exercise.visible && styles.exerciseCardBlurred
+                styles.exerciseCard
               ]}
             >
               <Image 
                 source={{ uri: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=80&h=80&fit=crop' }}
                 style={[
-                  styles.exerciseThumbnail,
-                  !exercise.visible && styles.blurredImage
+                  styles.exerciseThumbnail
                 ]}
               />
               <View style={styles.exerciseInfo}>
                 <Text style={[
-                  styles.exerciseTitle,
-                  !exercise.visible && styles.blurredText
+                  styles.exerciseTitle
                 ]}>
                   {exercise.title}
                 </Text>
                 <Text style={[
-                  styles.exerciseDuration,
-                  !exercise.visible && styles.blurredText
+                  styles.exerciseDuration
                 ]}>
                   {exercise.duration}
                 </Text>
               </View>
               <TouchableOpacity style={styles.playButton}>
-                <PlayCircle size={24} color={exercise.visible ? "#05E5FF" : "#2A4A52"} />
+                <PlayCircle size={24} color={ "#2A4A52"} />
               </TouchableOpacity>
             </TouchableOpacity>
           ))}
