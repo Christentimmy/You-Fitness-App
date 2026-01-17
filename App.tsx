@@ -10,6 +10,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import WorkoutPlanScreen from './src/screens/WorkoutPlanScreen';
 import WorkoutDayDetailScreen from './src/screens/WorkoutDayDetailScreen';
 import WorkoutPlayerScreen from './src/screens/WorkoutPlayerScreen';
+import CategoryScreen from './src/screens/CategoryScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -104,6 +105,14 @@ export default function App() {
           <Stack.Screen 
             name="WorkoutPlayer" 
             component={WorkoutPlayerScreen}
+            options={{
+              gestureEnabled: true,
+              animation: 'slide_from_right', // Add smooth transition
+            }}
+          />
+          <Stack.Screen 
+            name="Category" 
+            component={CategoryScreen}
             options={{
               gestureEnabled: true,
               animation: 'slide_from_right', // Add smooth transition

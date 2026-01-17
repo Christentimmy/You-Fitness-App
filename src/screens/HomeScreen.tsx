@@ -123,14 +123,14 @@ const HomeScreen = () => {
         {/* Category Section */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Category</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=> navigation.navigate("Category")}>
             <Text style={styles.viewAllText}>View All</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.categoryGrid}>
           {categories.map((category) => (
-            <TouchableOpacity key={category.id} style={styles.categoryCard}>
+            <TouchableOpacity key={category.id} style={styles.categoryCard} onPress={()=> navigation.navigate("Category")}>
               <Text style={styles.categoryIcon}>{category.icon}</Text>
               <Text style={styles.categoryName}>{category.name}</Text>
             </TouchableOpacity>
