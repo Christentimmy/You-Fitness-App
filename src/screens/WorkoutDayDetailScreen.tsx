@@ -105,7 +105,7 @@ const WorkoutDayDetailScreen = () => {
         </View>
 
         {/* Start Button */}
-        <TouchableOpacity style={styles.startButton}>
+        <TouchableOpacity style={styles.startButton} onPress={()=> navigation.navigate("WorkoutPlayer")}>
           <Text style={styles.startButtonText}>Start</Text>
         </TouchableOpacity>
 
